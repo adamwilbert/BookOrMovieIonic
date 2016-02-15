@@ -1,6 +1,5 @@
 /* Empty. Add your own CSS if you like */
 .padding {
-  /*background-color: #00004C;*/
   color: white
   font-family: helvetica;
 }
@@ -9,4 +8,18 @@
 }
 ion-item {
   color: white
+}
+#main-header {
+  margin-top: 20%;
+}
+#poster {
+  width: 80%;
+  margin: 0 10%;
+}
+
+#infopane{
+  margin: 10%;
+}
+.container h4{
+  font-family: Helvetica;
 }

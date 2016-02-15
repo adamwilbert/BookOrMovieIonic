@@ -1,15 +1,10 @@
-<ion-view view-title="Properties">
+<ion-view view-title="Titles">
   <ion-content class='padding'>
         <h2>{{vm.test}}</h2>
 
     <ion-list>
       <ion-item  ng-repeat="property in vm.allProperties" type="item-text-wrap" href="#/tab/properties/{{property._id}}">
-
         {{property.movieTitle}}
-
-        <ion-option-button class="button-assertive" ng-click="remove(property)">
-          Delete
-        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -6,15 +6,16 @@
 -->
 <ion-view view-title="{{vm.movieName}}">
   <ion-content class="padding">
-      {{vm.test}}
       <h2 >{{vm.name}}</h2>
+      <h4>{{vm.decision}}</h4>
+    <img id='poster' ng-src="{{vm.poster}}">
+    <button class="vote" ng-click-'vm.movieVote()'>Movie</button>
+    <button class="vote" ng-click='vm.bookVote()'>Book</button>
+    <div id='infopane'>
       <ul>
-        <li>Book title : {{vm.bookTitle}}</li>
-        <li>Book Critic's review : {{vm.bookCriticReview}}</li>
-        <li></li>
+        <li>Book Review Metascore : {{vm.bookCriticReview}}</li>
+        <li>Movie Review Metascore : {{vm.movieCriticReview}}</li>
       </ul>
-    <img ng-src="{{vm.poster}}" style="width: 100px; height: 150px">
-    <p>
-    </p>
+    </div>
   </ion-content>
 </ion-view>

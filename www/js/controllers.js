@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['LocalStorageModule', 'ionic'])
 
 .controller('MainController', function($scope) {
   $scope.secret = 'Espeon is bae'
@@ -29,11 +29,25 @@ angular.module('starter.controllers', [])
 .controller('PropertyDetailCtrl', function($scope, $http, $stateParams) {
     var vm = this
     vm.test = 'espeon is bae'
+    vm.decision;
+    var mainPropUrl = 'http://localhost:8080/properties/api/';
+    vm.decider = function(){
+      if (vm.movieCriticReview > vm.bookCriticReview){
+        vm.decision = "See the movie first!"
+      }else {
+        vm.decision = "Read the book first!"
+      }
+    }
+    vm.movieVote = function(){
+      $http.put(mainPropUrl + $stateParams.propertyId, {userId: 'Movie'})
+        .success(function(data){
+        });
+    }
+    vm.bookVote = function(){
 
+    }
 
-
-    var allPropertiesUrl = 'http://localhost:8080/properties/api/';
-    $http.get(allPropertiesUrl + $stateParams.propertyId)
+    $http.get(mainPropUrl + $stateParams.propertyId)
         .success(function(data){
           vm.movieCriticReview=data[0].movieCriticReview
           vm.bookCriticReview=data[0].bookCriticReview
@@ -41,10 +55,34 @@ angular.module('starter.controllers', [])
           vm.bookTitle = data[0].movieTitle
           vm.name = data[0].movieTitle
           vm.poster = data[0].poster
+          vm.movieVotes = data[0].movieVotes
+          vm.bookVotes = data[0].bookVotes
+          vm.decider()
         });
 })
 
 .controller('UserCtrl', function($scope, $http) {
     var vm = this
     vm.test = 'espeon is bae'
+})
+
+.controller('AuthenticationController', function($scope, $state, localStorageService){
+  $scope.test = 'espeon is bae'
+    if(localStorageService.get('google-token') && isTokenInDate(localStorageService)){
+      User.get({id: localStorageService.get('userId')}), function(user){
+        $state.transitionTo('dash')
+        $scope.Authenticated = true
+      }
+    } else {
+      $scope.needsAuthentication = true
+    }
+    $scope.logout = function(){
+      local.StorageService.clearAll()
+      location.href = location.pathname
+    }
+})
+
+.controller('LoginController', function($scope, GoogleLoginService) {
+  var vm = this
+  vm.test = 'espeon is bae'
 })

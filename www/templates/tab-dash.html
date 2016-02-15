@@ -1,9 +1,21 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Book or Movie?">
   <ion-content class='padding'>
+  <div class="col col-100">
+      <h4 id='main-header'>
+        Can't decide whether you want to see the movie or watch the book first?  We're here to help.
+      </h4>
+      <img id='main-image' src="http://2.bp.blogspot.com/-tlns1qOSDyI/U3Y4Avjf9bI/AAAAAAAAAMc/a-_x3MR8hc0/s1600/books_arrow_film_reel.png">
 
-    <h4 id='main-header'>
-      Can't decide whether you want to see the movie or watch the book first?  We're here to help.
-    </h4>
-
+  <div ng-controller='AuthenticationController'>
+    <div ng-show='Authenticated'></div>
+    {{test}}
+    <img src="./img/google-login.png" alt="Login with Google" ng-click='googlelogin()'></img>
+  </div>
+    <div ng-show='needsAuthentication'>
+  <div class = 'col col-100' ng-controller='LoginController as login'>
+    {{1+1}}
+    {{login.test}}
+  </div>
+  </div>
   </ion-content>
 </ion-view>

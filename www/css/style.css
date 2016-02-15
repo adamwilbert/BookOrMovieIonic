@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+.padding {
+  /*background-color: #00004C;*/
+  color: white
+  font-family: helvetica;
+}
+.bar-stable{
+  background-color: #A55D35;
+}
+ion-item {
+  color: white
+}

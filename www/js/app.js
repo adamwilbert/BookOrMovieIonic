@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'app.auth'])
+angular.module('starter', ['ionic', 'starter.controllers', 'app.auth', 'ngCordova', 'ngCordovaOauth'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -58,6 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.auth'])
         }
       }
     })
+
     .state('tab.property-detail', {
       url: '/properties/:propertyId',
       views: {
@@ -73,7 +74,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.auth'])
     views: {
       'tab-user': {
         templateUrl: 'templates/tab-user.html',
-        controller: 'userCtrl as vm'
+        controller: 'UserCtrl as vm'
       }
     }
   });

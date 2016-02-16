@@ -1,8 +1,11 @@
 <ion-view view-title="User">
   <ion-content class='padding'>
-  this is also a test
-  This is a test.
       {{vm.test}}
+    <button class='button button-dark' ng-click='logout()'>Logout</button>
 
+  <div ng-controller='AuthenticationController'>
+      {{localstorage}}
+
+  </div>
   </ion-content>
 </ion-view>

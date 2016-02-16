@@ -61,28 +61,30 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic'])
         });
 })
 
-.controller('UserCtrl', function($scope, $http) {
+.controller('UserCtrl', function($scope, $http, localStorageService, GoogleLoginService) {
     var vm = this
     vm.test = 'espeon is bae'
-})
-
-.controller('AuthenticationController', function($scope, $state, localStorageService){
-  $scope.test = 'espeon is bae'
-    if(localStorageService.get('google-token') && isTokenInDate(localStorageService)){
-      User.get({id: localStorageService.get('userId')}), function(user){
-        $state.transitionTo('dash')
-        $scope.Authenticated = true
-      }
-    } else {
-      $scope.needsAuthentication = true
-    }
+    $scope.localstorage = localStorageService
     $scope.logout = function(){
-      local.StorageService.clearAll()
+      localStorageService.clearAll()
       location.href = location.pathname
     }
 })
 
-.controller('LoginController', function($scope, GoogleLoginService) {
-  var vm = this
-  vm.test = 'espeon is bae'
+.controller('AuthenticationController', function($scope, $state, localStorageService, GoogleLoginService, $http){
+  $scope.test = 'espeon is bae'
+    // if(localStorageService.get('google-token')){
+    //   $http.get('http://localhost:8080/users/show')
+    //   User.get({id: localStorageService.get('userId')}), function(user){
+    //     $state.transitionTo('dash')
+    //     $scope.Authenticated = true
+    //   }
+    // } else {
+    //   $scope.needsAuthentication = true
+    // }
+  $scope.googlelogin = GoogleLoginService.login
+  $scope.logout = function(){
+      localStorageService.clearAll()
+      location.href = location.pathname
+    }
 })

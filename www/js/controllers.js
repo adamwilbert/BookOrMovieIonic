@@ -5,13 +5,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 })
 
 .controller('PropertiesCtrl', function($scope, $http) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+
     var vm = this
       vm.test = 'espeon is bae';
 
@@ -68,15 +62,15 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 
 .controller('UserCtrl', function($scope, $http, localStorageService) {
     var vm = this
-    vm.test = window.localStorage.google.uid
-    $scope.localstorage = localStorageService
+    vm.test = window.localStorage.user
     $scope.logout = function(){
-      localStorageService.clearAll()
+      window.localStorage.clear()
       location.href = location.pathname
     }
 })
 
 .controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http, localStorageService){
+  $scope.loggedIn;
   $scope.googleLogin = function(){
     $cordovaOauth.google("805387380544-copmhikv3sg6cd36gsp949nugdol3hva.apps.googleusercontent.com",
       ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email",
@@ -85,15 +79,11 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       console.log("google login success");
       var accessToken;
       //$location.url('/scan');
-      console.log(JSON.stringify(result));
       accessToken = JSON.stringify(result);
-      console.log(result.access_token);
-      console.log(typeof(result.access_token));
 
       //getting profile info of the user
       $http({method:"GET", url:"https://www.googleapis.com/plus/v1/people/me?access_token="+result.access_token}).
       success(function(response){
-               console.log(JSON.stringify(response));
               var param = {
                 provider: 'google',
                   google: {
@@ -105,8 +95,9 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
                                 image: response.image.url
                             }
                 };
-                window.localStorage['google'] = param
-                console.log(window.localStorage.google)
+                window.localStorage.user = response['id']
+                $scope.loggedIn = window.localStorage.user
+
       }, function(error) {
       console.log(error);
     });

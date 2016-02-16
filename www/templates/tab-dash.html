@@ -8,8 +8,8 @@
 <img src="./img/book.png" class="col icon"><img src="./img/film.png" class="col icon">
 
   <div ng-controller='OauthController'>
-
-   <img class='col col-80 col-offset-10' id='google-oauth' src="./img/google-login.png" alt="Login with Google" ng-click='googleLogin()'></img>
+    <div ng-show='loggedIn'  class="ng-hide">Got em</div>
+   <img ng-show='!loggedIn'  class='ng-hide col col-80 col-offset-10' id='google-oauth' src="./img/google-login.png" alt="Login with Google" ng-click='googleLogin()'></img>
 
   </div>
   </ion-content>

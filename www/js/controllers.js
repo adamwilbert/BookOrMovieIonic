@@ -68,7 +68,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 
 .controller('UserCtrl', function($scope, $http, localStorageService) {
     var vm = this
-    vm.test = 'espeon is bae'
+    vm.test = window.localStorage.google.uid
     $scope.localstorage = localStorageService
     $scope.logout = function(){
       localStorageService.clearAll()
@@ -76,11 +76,11 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     }
 })
 
-.controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http){
+.controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http, localStorageService){
   $scope.googleLogin = function(){
     $cordovaOauth.google("805387380544-copmhikv3sg6cd36gsp949nugdol3hva.apps.googleusercontent.com",
       ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/plus.me"]).
+      "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/plus.me"], {redirect_uri: 'http://localhost/callback'}).
     then(function(result){
       console.log("google login success");
       var accessToken;
@@ -93,7 +93,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       //getting profile info of the user
       $http({method:"GET", url:"https://www.googleapis.com/plus/v1/people/me?access_token="+result.access_token}).
       success(function(response){
-               console.log(response);
+               console.log(JSON.stringify(response));
               var param = {
                 provider: 'google',
                   google: {
@@ -105,7 +105,8 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
                                 image: response.image.url
                             }
                 };
-                console.log(param);
+                window.localStorage['google'] = param
+                console.log(window.localStorage.google)
       }, function(error) {
       console.log(error);
     });

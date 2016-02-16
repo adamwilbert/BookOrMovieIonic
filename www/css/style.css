@@ -11,6 +11,7 @@ ion-item {
 }
 #main-header {
   margin-top: 20%;
+  text-align: center;
 }
 #poster {
   width: 80%;
@@ -23,3 +24,13 @@ ion-item {
 .container h4{
   font-family: Helvetica;
 }
+
+.icon{
+  max-width: 50%;
+  display: inline;
+}
+
+/*ion-nav-view.view-container, ion-nav-view{
+  background-color: blue;
+}
+*/

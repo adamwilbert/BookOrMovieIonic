@@ -8,7 +8,8 @@
   <ion-content class="padding">
       <div class="col col-90 col-offset-5"><h2 >{{vm.name}}</h2></div>
       <h4>{{vm.decision}}</h4>
-    <img id='poster' ng-src="{{vm.poster}}">
+<!--       <div ng-show='window.localStorage.user' class='ng-hide'>NGSHOW</div>
+ -->    <img id='poster' ng-src="{{vm.poster}}">
     <p>Cast your vote!</p>
    <div class="button-bar">
         <button class="button button-dark vote" ng-click='vm.movieVote()'>Movie</button>

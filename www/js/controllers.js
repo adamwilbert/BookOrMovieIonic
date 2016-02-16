@@ -74,7 +74,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
   $scope.googleLogin = function(){
     $cordovaOauth.google("805387380544-copmhikv3sg6cd36gsp949nugdol3hva.apps.googleusercontent.com",
       ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/plus.me"], {redirect_uri: 'http://localhost/callback'}).
+      "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/plus.me"]).
     then(function(result){
       console.log("google login success");
       var accessToken;

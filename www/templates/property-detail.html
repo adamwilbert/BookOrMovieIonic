@@ -11,13 +11,15 @@
     <img id='poster' ng-src="{{vm.poster}}">
     <p>Cast your vote!</p>
    <div class="button-bar">
-        <button class="button button-dark vote" ng-click-'vm.movieVote()'>Movie</button>
+        <button class="button button-dark vote" ng-click='vm.movieVote()'>Movie</button>
           <button class="vote button button-dark " ng-click='vm.bookVote()'>Book</button>
    </div>
     <div id='infopane'>
       <ul>
         <li>Book Review Metascore : {{vm.bookCriticReview}}</li>
         <li>Movie Review Metascore : {{vm.movieCriticReview}}</li>
+        <li>User Movie Votes: {{vm.movieVotes.length}}</li>
+        <li>User Book votes: {{vm.bookVotes.length}}</li>
       </ul>
     </div>
   </ion-content>

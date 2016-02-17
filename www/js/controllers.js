@@ -74,8 +74,8 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 
     $http.get(mainPropUrl + $stateParams.propertyId)
         .success(function(data){
-          vm.movieCriticReview=data[0].movieCriticReview
-          vm.bookCriticReview=data[0].bookCriticReview
+          vm.movieCriticReview= data[0].movieCriticReview
+          vm.bookCriticReview= data[0].bookCriticReview
           vm.bookTitle = data[0].bookTitle
           vm.bookTitle = data[0].movieTitle
           vm.name = data[0].movieTitle

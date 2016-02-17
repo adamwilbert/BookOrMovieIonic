@@ -17,8 +17,25 @@
   max-width: 50%;
   display: inline;
 }
+.platform-ios.platform-cordova:not(.fullscreen){
+    margin-top: 20px;
+}
+.custom-icon {
+  font-size: 64px;
+  color : red;
+}
+/*.frame_look_feel, .frame_look_feel h3{
+  font-family: 'Arial Black', Gadget, sans-serif;
+  background-color: #003366;
+  color: white;
+}*/
 
-/*ion-nav-view.view-container, ion-nav-view{
-  background-color: blue;
+.pane, .pane h3, .pane h4, .pane h2 {
+    font-family: 'Arial Black', Gadget, sans-serif;
+  background-color: #C5E3BF;
+  color: #444;
+}
+/*.bar-stable .bar-dark{
+  background-color: #CF5300;
 }
 */

@@ -49,7 +49,9 @@ function google($q, $http, $cordovaOauthUtility) {
     } else {
       deferred.reject("Cannot authenticate via a web browser");
     }
+
     return deferred.promise;
+
   }
 }
 

@@ -35,7 +35,10 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       }
     }
     vm.movieVote = function(){
-      if(JSON.stringify(vm.movieVotes).indexOf(window.localStorage.user)){
+      if(window.localStorage.user === undefined ||window.localStorage.user === null|| window.localStorage.user === ''){
+
+        return console.log('not logged in')
+      }else if(JSON.stringify(vm.movieVotes).indexOf(window.localStorage.user)>-1){
         return console.log('already voted!')
       }
       $http.put(mainPropUrl + 'movieVote/'+ $stateParams.propertyId, {userId: window.localStorage.user})
@@ -44,7 +47,10 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
         });
     }
     vm.bookVote = function(){
-      if(JSON.stringify(vm.bookVotes).indexOf(window.localStorage.user)){
+      if(window.localStorage.user === undefined ||window.localStorage.user === null|| window.localStorage.user === ''){
+
+        return console.log('not logged in')
+      }else if(JSON.stringify(vm.bookVotes).indexOf(window.localStorage.user)>-1){
         return console.log('already voted!')
       }
       $http.put(mainPropUrl + 'bookVote/'+ $stateParams.propertyId, {"userId": window.localStorage.user})

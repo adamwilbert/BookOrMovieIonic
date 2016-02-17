@@ -1,6 +1,6 @@
 <ion-view view-title="User">
   <ion-content class='padding'>
-  <div ng-show='window.localStorage.name !== "undefined"' class='ng-hide'>
+  <div ng-show="window.localStorage.user !== '' || window.localStorage.user !== null || window.localStorage.user !== undefined "class='ng-hide'>
     <img src="{{vm.image}}">
       <div>{{vm.firstName}}</div>
       <div>{{vm.lastName}}</div>

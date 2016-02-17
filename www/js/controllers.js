@@ -23,7 +23,8 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 .controller('PropertyDetailCtrl', function($scope, $http, $stateParams) {
     var vm = this
     vm.test = 'espeon is bae'
-    vm.decision;
+    vm.decision
+    vm.userDecision
     var mainPropUrl = 'http://bookormovie.herokuapp.com/properties/api/';
     vm.decider = function(){
       if (vm.movieCriticReview > vm.bookCriticReview){
@@ -33,10 +34,17 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       }else {
         vm.decision = 'Critics think they are equally good!'
       }
+      if (vm.movieVotes > vm.bookVotes){
+        vm.userDecision = "Our users say say see the movie first!"
+      }else if (vm.movieVotes < vm.bookVotes) {
+        vm.userDecision = "Our users say read the book first!"
+      }else {
+        vm.userDecision = 'Our users think they are equally good!'
+      }
     }
     vm.movieVote = function(){
       console.log('click')
-      if(window.localStorage.user === undefined ||window.localStorage.user === null|| window.localStorage.user === ''){
+      if(window.localStorage.user === undefined || window.localStorage.user === null|| window.localStorage.user === ''){
 
         return console.log('not logged in')
       }else if(JSON.stringify(vm.movieVotes).indexOf(window.localStorage.user)>-1){
@@ -45,6 +53,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       $http.put(mainPropUrl + 'movieVote/'+ $stateParams.propertyId, {userId: window.localStorage.user})
         .success(function(data){
           console.log(data)
+          vm.movieVotes.push({userId: window.localStorage.user})
         });
     }
     vm.bookVote = function(){
@@ -58,6 +67,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       $http.put(mainPropUrl + 'bookVote/'+ $stateParams.propertyId, {"userId": window.localStorage.user})
         .success(function(data){
           console.log(data)
+          vm.bookVotes.push({userId: window.localStorage.user})
         });
 
     }
@@ -90,6 +100,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     }
 })
 
+
 .controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http, localStorageService){
   $scope.googleLogin = function(){
     $cordovaOauth.google("805387380544-copmhikv3sg6cd36gsp949nugdol3hva.apps.googleusercontent.com",
@@ -104,17 +115,6 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       //getting profile info of the user
       $http({method:"GET", url:"https://www.googleapis.com/plus/v1/people/me?access_token="+result.access_token}).
       success(function(response){
-              var param = {
-                provider: 'google',
-                  google: {
-                                uid: response["id"],
-                                provider: 'google',
-                                first_name: response["name"]["givenName"],
-                                last_name: response["name"]["familyName"],
-                                email: response.emails[0]["value"],
-                                image: response.image.url
-                            }
-                };
                 window.localStorage.first_name = response["name"]["givenName"]
                 window.localStorage.last_name = response['name']['familyName']
                 window.localStorage.email = response.emails[0]["value"]

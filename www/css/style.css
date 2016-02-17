@@ -1,14 +1,5 @@
 /* Empty. Add your own CSS if you like */
-.padding {
-  color: white
-  font-family: helvetica;
-}
-.bar-stable{
-  background-color: #A55D35;
-}
-ion-item {
-  color: white
-}
+
 #main-header {
   margin-top: 20%;
   text-align: center;
@@ -20,9 +11,6 @@ ion-item {
 
 #infopane{
   margin: 10%;
-}
-.container h4{
-  font-family: Helvetica;
 }
 
 .icon{

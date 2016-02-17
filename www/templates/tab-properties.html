@@ -3,8 +3,9 @@
       <div class="col col-70 col-offset-15"><h2>Choose a title</h2></div>
 
     <ion-list>
-      <ion-item  ng-repeat="property in vm.allProperties" type="item-text-wrap" href="#/tab/properties/{{property._id}}">
-        {{property.movieTitle}}
+      <input type="search"  ng-model="vm.search" placeholder="search...">
+      <ion-item  ng-repeat="property in vm.allProperties | filter: vm.search | orderBy: 'movieTitle'" type="item-text-wrap" href="#/tab/properties/{{property._id}}">
+        <div>{{property.movieTitle}}</div>
       </ion-item>
     </ion-list>
   </ion-content>

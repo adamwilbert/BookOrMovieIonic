@@ -1,12 +1,16 @@
 <ion-view view-title="User">
   <ion-content class='padding'>
-  this is also a test
-  This is a test.
-      <div >{{vm.test}}</div>
-    <button class='button button-dark' ng-click='logout()'>Logout</button>
+  <div ng-show='window.localStorage.name !== "undefined"' class='ng-hide'>
+    <img src="{{vm.image}}">
+      <div>{{vm.firstName}}</div>
+      <div>{{vm.lastName}}</div>
+      <div>{{vm.email}}</div>
+    <button ng-show='vm.test' class='button button-dark ng-hide' ng-click='logout()'>Logout</button>
+  </div>
+
 
   <div ng-controller='OauthController'>
-
+    <div>{{window.localStorage.image}}</div>
   </div>
   </ion-content>
 </ion-view>

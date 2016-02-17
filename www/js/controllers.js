@@ -9,8 +9,8 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     var vm = this
       vm.test = 'espeon is bae';
 
-      //pokemon api call through angular
-      var allPropertiesUrl = 'http://localhost:8080/properties/api';
+      //calling deployed server for list of properties
+      var allPropertiesUrl = 'http://bookormovie.herokuapp.com/properties/api';
       vm.allProperties = [];
 
       $http.get(allPropertiesUrl)
@@ -24,22 +24,30 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     var vm = this
     vm.test = 'espeon is bae'
     vm.decision;
-    var mainPropUrl = 'http://localhost:8080/properties/api/';
+    var mainPropUrl = 'http://bookormovie.herokuapp.com/properties/api/';
     vm.decider = function(){
       if (vm.movieCriticReview > vm.bookCriticReview){
-        vm.decision = "See the movie first!"
+        vm.decision = "Critics say see the movie first!"
+      }else if (vm.bookCriticReview < vm.bookCriticReview) {
+        vm.decision = "Critics say read the book first!"
       }else {
-        vm.decision = "Read the book first!"
+        vm.decision = 'Critics think they are equally good!'
       }
     }
     vm.movieVote = function(){
-      $http.put(mainPropUrl + 'movieVote/'+ $stateParams.propertyId, {"userId": '56be8aa8899c5bdd8533bcfc'})
+      if(JSON.stringify(vm.movieVotes).indexOf(window.localStorage.user)){
+        return console.log('already voted!')
+      }
+      $http.put(mainPropUrl + 'movieVote/'+ $stateParams.propertyId, {userId: window.localStorage.user})
         .success(function(data){
           console.log(data)
         });
     }
     vm.bookVote = function(){
-      $http.put(mainPropUrl + 'bookVote/'+ $stateParams.propertyId, {"userId": '56be8aa8899c5bdd8533bcfc'})
+      if(JSON.stringify(vm.bookVotes).indexOf(window.localStorage.user)){
+        return console.log('already voted!')
+      }
+      $http.put(mainPropUrl + 'bookVote/'+ $stateParams.propertyId, {"userId": window.localStorage.user})
         .success(function(data){
           console.log(data)
         });
@@ -63,6 +71,10 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 .controller('UserCtrl', function($scope, $http, localStorageService) {
     var vm = this
     vm.test = window.localStorage.user
+    vm.image = window.localStorage.image
+    vm.firstName = window.localStorage.first_name
+    vm.lastName = window.localStorage.last_name
+    vm.email = window.localStorage.email
     $scope.logout = function(){
       window.localStorage.clear()
       location.href = location.pathname
@@ -70,11 +82,10 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 })
 
 .controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http, localStorageService){
-  $scope.loggedIn;
   $scope.googleLogin = function(){
     $cordovaOauth.google("805387380544-copmhikv3sg6cd36gsp949nugdol3hva.apps.googleusercontent.com",
       ["https://www.googleapis.com/auth/urlshortener", "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/plus.me"]).
+      "https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/plus.me"], {"redirect_uri": 'http://localhost/callback'}).
     then(function(result){
       console.log("google login success");
       var accessToken;
@@ -95,6 +106,10 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
                                 image: response.image.url
                             }
                 };
+                window.localStorage.first_name = response["name"]["givenName"]
+                window.localStorage.last_name = response['name']['familyName']
+                window.localStorage.email = response.emails[0]["value"]
+                window.localStorage.image = response.image.url
                 window.localStorage.user = response['id']
                 $scope.loggedIn = window.localStorage.user
 

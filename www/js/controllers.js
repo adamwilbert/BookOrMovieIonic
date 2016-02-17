@@ -28,13 +28,14 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     vm.decider = function(){
       if (vm.movieCriticReview > vm.bookCriticReview){
         vm.decision = "Critics say see the movie first!"
-      }else if (vm.bookCriticReview < vm.bookCriticReview) {
+      }else if (vm.movieCriticReview < vm.bookCriticReview) {
         vm.decision = "Critics say read the book first!"
       }else {
         vm.decision = 'Critics think they are equally good!'
       }
     }
     vm.movieVote = function(){
+      console.log('click')
       if(window.localStorage.user === undefined ||window.localStorage.user === null|| window.localStorage.user === ''){
 
         return console.log('not logged in')
@@ -47,6 +48,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
         });
     }
     vm.bookVote = function(){
+      console.log('click')
       if(window.localStorage.user === undefined ||window.localStorage.user === null|| window.localStorage.user === ''){
 
         return console.log('not logged in')
@@ -82,6 +84,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     vm.lastName = window.localStorage.last_name
     vm.email = window.localStorage.email
     $scope.logout = function(){
+      console.log('logging out')
       window.localStorage.clear()
       location.href = location.pathname
     }

@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
         vm.decision = 'Critics think they are equally good!'
       }
       if (vm.movieVotes > vm.bookVotes){
-        vm.userDecision = "Our users say say see the movie first!"
+        vm.userDecision = "Our users say see the movie first!"
       }else if (vm.movieVotes < vm.bookVotes) {
         vm.userDecision = "Our users say read the book first!"
       }else {
@@ -43,7 +43,6 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
       }
     }
     vm.movieVote = function(){
-      console.log('click')
       if(window.localStorage.user === undefined || window.localStorage.user === null|| window.localStorage.user === ''){
 
         return console.log('not logged in')
@@ -54,6 +53,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
         .success(function(data){
           console.log(data)
           vm.movieVotes.push({userId: window.localStorage.user})
+          vm.decider()
         });
     }
     vm.bookVote = function(){
@@ -68,6 +68,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
         .success(function(data){
           console.log(data)
           vm.bookVotes.push({userId: window.localStorage.user})
+          vm.decider()
         });
 
     }
@@ -82,6 +83,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
           vm.poster = data[0].poster
           vm.movieVotes = data[0].movieVotes
           vm.bookVotes = data[0].bookVotes
+
           vm.decider()
         });
 })
@@ -109,7 +111,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     then(function(result){
       console.log("google login success");
       var accessToken;
-      //$location.url('/scan');
+      //$location.url('/scan')
       accessToken = JSON.stringify(result);
 
       //getting profile info of the user

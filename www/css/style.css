@@ -16,23 +16,20 @@
 .icon{
   max-width: 50%;
   display: inline;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
-.platform-ios.platform-cordova:not(.fullscreen){
-    margin-top: 20px;
+
+.item-input{
+  margin-bottom: 2%;
 }
-.custom-icon {
-  font-size: 64px;
-  color : red;
-}
-/*.frame_look_feel, .frame_look_feel h3{
-  font-family: 'Arial Black', Gadget, sans-serif;
-  background-color: #003366;
+::placeholder{
   color: white;
-}*/
+}
 
 .pane, .pane h3, .pane h4, .pane h2 {
     font-family: 'Arial Black', Gadget, sans-serif;
-  background-color: #C5E3BF;
+  background-color: #fff8ee;
   color: #444;
 }
 /*.bar-stable .bar-dark{

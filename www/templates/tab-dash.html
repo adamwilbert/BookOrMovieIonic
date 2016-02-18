@@ -8,7 +8,8 @@
 <img src="./img/book.png" class="col icon"><img src="./img/film.png" class="col icon">
 
   <div ng-controller='OauthController'>
-    <div ng-show='loggedIn'  class="ng-hide">Got em</div>
+    <div  ng-show='loggedIn' class='center ng-hide'>{{email}}</div>
+    <button ng-show='loggedIn' class='button button-dark ng-hide center' ng-click='logout()'>Logout </button>
    <img ng-show='!loggedIn'  class='ng-hide col col-80 col-offset-10' id='google-oauth' src="./img/google-login.png" alt="Login with Google" ng-click='googleLogin()'></img>
 
   </div>

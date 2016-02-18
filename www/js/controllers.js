@@ -123,6 +123,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
                 window.localStorage.image = response.image.url
                 window.localStorage.user = response['id']
                 $scope.loggedIn = window.localStorage.user
+                $scope.email = window.localStorage.email
 
       }, function(error) {
       console.log(error);
@@ -132,5 +133,9 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     console.log(error);
   });
 }
-
+$scope.logout = function(){
+      console.log('logging out')
+      window.localStorage.clear()
+      location.href = location.pathname
+    }
 }])

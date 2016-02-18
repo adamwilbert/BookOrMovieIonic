@@ -36,3 +36,8 @@
   background-color: #CF5300;
 }
 */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

@@ -1,10 +1,10 @@
 <ion-view view-title="User" class='frame_look_feel'>
   <ion-content class='padding'>
   <div ng-show="window.localStorage.user !== '' || window.localStorage.user !== null || window.localStorage.user !== undefined "class='ng-hide'>
-    <img src="{{vm.image}}">
-      <div>{{vm.firstName}}</div>
-      <div>{{vm.lastName}}</div>
-      <div>{{vm.email}}</div>
+     <img class='col-50 col-offset-25'src="{{vm.image}}">
+      <div class='col-50 col-offset-25'>{{vm.firstName}}</div>
+      <div class='col-50 col-offset-25'>{{vm.lastName}}</div>
+      <div class='col-50 col-offset-25'>{{vm.email}}</div>
     <button ng-show='vm.test' class='button button-dark ng-hide' ng-click='logout()'>Logout</button>
   </div>
 

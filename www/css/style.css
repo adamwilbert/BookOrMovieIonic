@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 #main-header {
-  margin-top: 20%;
+  margin-top: 10%;
   text-align: center;
 }
 #poster {
@@ -17,25 +17,35 @@
   max-width: 50%;
   display: inline;
   margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 8%;
 }
 
 .item-input{
   margin-bottom: 2%;
 }
+.ng-binding{
+  font-size: 1.5em;
+}
+
 ::placeholder{
   color: white;
 }
 
 .pane, .pane h3, .pane h4, .pane h2 {
     font-family: 'Arial Black', Gadget, sans-serif;
-  background-color: #fff8ee;
+  background-color: #C5E3BF ;
   color: #444;
 }
-/*.bar-stable .bar-dark{
-  background-color: #CF5300;
+
+#logout{
+  margin-top: 2%;
 }
-*/
+.decision{
+margin: 0 auto;
+}
+#displayMessage{
+  margin-bottom: 2%;
+}
 .center {
     margin-left: auto;
     margin-right: auto;

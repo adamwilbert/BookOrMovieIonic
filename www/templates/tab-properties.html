@@ -6,7 +6,8 @@
     <label class="item item-input ">
       <input ng-model='vm.search' type="text" placeholder="search">
       </label>
-      <ion-item   ng-repeat="property in vm.allProperties | filter: vm.search | orderBy: 'movieTitle'" type="item-text-wrap" href="#/tab/properties/{{property._id}}">
+      <!-- repeats for all movie/book properties in database and auto sorts them by name.  Search working for movie titles. -->
+      <ion-item  ng-repeat="property in vm.allProperties | filter: vm.search | orderBy: 'movieTitle'" type="item-text-wrap" href="#/tab/properties/{{property._id}}">
         <div>{{property.movieTitle}}</div>
       </ion-item>
     </ion-list>

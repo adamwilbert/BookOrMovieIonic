@@ -20,6 +20,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 
 })
 
+
 .controller('PropertyDetailCtrl', function($scope, $http, $stateParams) {
     var vm = this
     vm.test = 'espeon is bae'

@@ -19,7 +19,7 @@
   max-width: 50%;
   display: inline;
   margin-top: 10%;
-  margin-bottom: 8%;
+  margin-bottom: 5%;
 }
 
 .item-input{
@@ -28,7 +28,12 @@
 .ng-binding{
   font-size: 1.5em;
 }
-
+#prof{
+  border-radius: 5px;
+  margin-top: 2%;
+  margin-right: 10%;
+  height: 46px;
+}
 ::placeholder{
   color: white;
 }

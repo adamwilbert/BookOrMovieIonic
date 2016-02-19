@@ -133,6 +133,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
                 window.localStorage.user = response['id']
                 $scope.loggedIn = window.localStorage.user
                 $scope.email = window.localStorage.email
+                $scope.image = window.localStorage.image
 
       }, function(error) {
       console.log(error);

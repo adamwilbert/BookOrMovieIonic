@@ -6,18 +6,22 @@
 -->
 <ion-view view-title="{{vm.movieName}}">
   <ion-content class="padding">
-      <div class="col col-90 col-offset-5"><h2 >{{vm.name}}</h2></div>
-      <h4 class='decision center'>{{vm.decision}}</h4>
+    <span id='movietitle'>{{vm.name}}</span>
+
+
+    <img id='poster' ng-src="{{vm.poster}}">
+
+    <div class="reviews">
+      <h4 class='decision'>{{vm.decision}}</h4>
       <h4 class='decision center'>{{vm.userDecision}}</h4>
+    </div>
 
-<!--       <div ng-show='window.localStorage.user' class='ng-hide'>NGSHOW</div>
- -->    <img id='poster' ng-src="{{vm.poster}}">
-
-    <p>Cast your vote!</p>
-   <div class="button-bar">
+    <p class='center'>Cast your vote!</p>
+    <div class="button-bar">
         <button class="button button-dark vote" ng-click='vm.movieVote()'>Movie</button>
           <button class="vote button button-dark " ng-click='vm.bookVote()'>Book</button>
-   </div>
+    </div>
+
     <div id='infopane'>
       <ul>
         <li>Book Review Metascore : {{vm.bookCriticReview}}</li>
@@ -26,5 +30,6 @@
         <li>User Book votes: {{vm.bookVotes.length}}</li>
       </ul>
     </div>
-  </ion-content> 
+
+  </ion-content>
 </ion-view>

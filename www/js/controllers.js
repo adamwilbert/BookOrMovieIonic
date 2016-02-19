@@ -30,16 +30,16 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
     // function to come to conclusion of voting and comparison of review scores.  Compares first metascores for book and movie and then compares user votes and updates div in view page
     vm.decider = function(){
       if (vm.movieCriticReview > vm.bookCriticReview){
-        vm.decision = "critics say movie!"
+        vm.decision = "critics say see the movie!"
       }else if (vm.movieCriticReview < vm.bookCriticReview) {
-        vm.decision = "critics say book!"
+        vm.decision = "critics say read the book!"
       }else {
         vm.decision = 'critics love both!'
       }
       if (vm.movieVotes > vm.bookVotes){
-        vm.userDecision = "users say movie!"
+        vm.userDecision = "users say see the movie!"
       }else if (vm.movieVotes < vm.bookVotes) {
-        vm.userDecision = "users say book!"
+        vm.userDecision = "users say read the book!"
       }else {
         vm.userDecision = 'users love both!'
       }

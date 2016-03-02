@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova'])
+angular.module('bookormoviemain.controllers', ['LocalStorageModule', 'ionic', 'ngCordova'])
 
 .controller('MainController', function($scope) {
   $scope.secret = 'Espeon is bae'
@@ -7,7 +7,6 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 .controller('PropertiesCtrl', function($scope, $http) {
 
     var vm = this
-      vm.test = 'espeon is bae';
 
       //calling deployed server for list of properties, returning data on all properties stored in DB
       var allPropertiesUrl = 'http://bookormovie.herokuapp.com/properties/api';
@@ -47,8 +46,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 
     // both of the voting functions work similarly.  (possible refactor?) checks local storage to make sure a user is logged in, then runs a check to see if the user has already voted by checking to see if there is an index of the user's googleId already in the votes array.  If vote passes those tests runs a put request to db API to update the movie pushing to the votes array in the database.  Then updates the page locally for votes and re runs the decider function to check to see if there  has been a change.
     vm.movieVote = function(){
-      if(window.localStorage.user === undefined || window.localStorage.user === null|| window.localStorage.user === ''){
-
+      if(window.localStorage.user === undefined || window.localStorage.user === null || window.localStorage.user === ''){
         return console.log('not logged in')
       }else if(JSON.stringify(vm.movieVotes).indexOf(window.localStorage.user)>-1){
         return console.log('already voted!')
@@ -111,7 +109,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
 // })
 
 
-.controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http, localStorageService, $state){
+.controller('OauthController', ['$scope', '$cordovaOauth', '$http', function($scope, $cordovaOauth, $http, localStorageService, $state, $window){
   // queries google oauth login to get access token, using $cordovaOauth
   $scope.googleLogin = function(){
     $cordovaOauth.google("805387380544-copmhikv3sg6cd36gsp949nugdol3hva.apps.googleusercontent.com",
@@ -134,6 +132,7 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
                 $scope.loggedIn = window.localStorage.user
                 $scope.email = window.localStorage.email
                 $scope.image = window.localStorage.image
+                $scope.loaded = true
 
       }, function(error) {
       console.log(error);
@@ -144,10 +143,12 @@ angular.module('starter.controllers', ['LocalStorageModule', 'ionic', 'ngCordova
   });
 }
 
+$scope.loaded = false
+
 // basic logout function that clears local storage and resets location
 $scope.logout = function(){
       console.log('logging out')
       window.localStorage.clear()
-     window.location.reload(true)
+      $scope.loaded = false
     }
 }])
